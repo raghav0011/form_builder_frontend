@@ -20,7 +20,7 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        uses: npm install --force
+        uses: bahmutov/npm-install--force@v1
 
       - name: Build project
         run: npm run build
