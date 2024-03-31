@@ -20,10 +20,10 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        uses: bahmutov/npm-install--force@v1
+        uses: bahmutov/npm-install@v1
 
       - name: Build project
-        run: npm run build
+        run: npm run build --force
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v2
