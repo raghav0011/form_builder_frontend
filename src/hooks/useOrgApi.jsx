@@ -29,6 +29,9 @@ const useOrgApi = () => {
           alert("Registered successfully");
         }
       },
+      onError: (err) => {
+        alert(err?.response?.data?.message)
+      }
     }),
     orgLogin: useMutation(OrgAPi.LoginOrg, {
       onSuccess: ({ statusCode, data }) => {

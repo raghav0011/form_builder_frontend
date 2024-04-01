@@ -25,10 +25,13 @@ const useUserApi = () => {
   const mutations = {
     userRegister: useMutation(UserAPi.RegisterUser, {
       onSuccess: ({ statusCode, data }) => {
-        if (statusCode === 200) {
+        if (statusCode === 201) {
           console.log("Registered");
-          alert("Registered successfully")
+          alert("Registered successfully");
         }
+      },
+      onError: (err) => {
+        alert(err?.response?.data?.message);
       },
     }),
     userLogin: useMutation(UserAPi.LoginUser, {
@@ -63,7 +66,7 @@ const useUserApi = () => {
     submitUserForm: useMutation(UserAPi.submitUserForm, {
       onSuccess: ({ statusCode, data }) => {
         console.log("Submitted");
-        alert("Submitted Successfully")
+        alert("Submitted Successfully");
       },
       onError: (err) => {
         alert("Error");
