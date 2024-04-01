@@ -26,16 +26,17 @@ const useOrgApi = () => {
       onSuccess: ({ statusCode, data }) => {
         if (statusCode === 200) {
           console.log("Registered");
-          alert("Registered successfully")
+          alert("Registered successfully");
         }
       },
     }),
     orgLogin: useMutation(OrgAPi.LoginOrg, {
       onSuccess: ({ statusCode, data }) => {
-        if (statusCode === 200) {
-          localStorage.setItem("jwt", data?.token);
+        if (statusCode === 201) {
           const orgData = data?.org;
           navigate("/orgDashboard", { state: { orgData } });
+          localStorage.removeItem("jwt");
+          localStorage.setItem("jwt", data?.token);
           setState((prev) => ({
             ...prev,
             orgInfo: {
@@ -46,13 +47,13 @@ const useOrgApi = () => {
         }
       },
       onError: (err) => {
-        alert(err?.response?.data?.message)
+        alert(err?.response?.data?.message);
       },
     }),
     orgPostForm: useMutation(OrgAPi.PostOrgForm, {
       onSuccess: ({ statusCode, data }) => {
         console.log("submitted");
-        alert("Submitted Successfully")
+        alert("Submitted Successfully");
       },
     }),
     getUserSubmission: useMutation(OrgAPi.GetUserSubmission, {

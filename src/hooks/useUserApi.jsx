@@ -34,9 +34,9 @@ const useUserApi = () => {
     userLogin: useMutation(UserAPi.LoginUser, {
       onSuccess: ({ statusCode, data }) => {
         if (statusCode === 200) {
-          localStorage.setItem("jwt", data?.token);
           const userData = data?.user;
           navigate("/userDashboard", { state: { userData } });
+          localStorage.setItem("jwt", data?.token);
           setState((prev) => ({
             ...prev,
             userInfo: {
